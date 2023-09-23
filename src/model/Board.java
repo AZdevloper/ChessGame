@@ -17,7 +17,7 @@ public class Board {
               currentPlayer = COLORS[0];
 
               // Initialize the board with the starting positions of the pieces.
-          board[0][0] = " ";
+              board[0][0] = " ";
               for (int i = 0; i <= 9; i++) {
                   if ( i >= 1 && i!=9 ){
                       board[i][0] = NUMBERS[i];
@@ -27,7 +27,7 @@ public class Board {
                                   board[i][j] = LETTERS[j];
                                       //board[i][j] = WHITE_PIECES[0];
 
-                              } else if( i==1 && j!=8 ){
+                              } else if( i==1 ){
                                   board[i][j] = BLACK_PIECES[j];
 
                               } else if (i == 2 ){
@@ -36,7 +36,7 @@ public class Board {
                               else if (i==7) {
                                       board[i][j] = BLACK_PIECES[0];
 
-                              } else if (i == 8 && j!=8 ) {
+                              } else if (i == 8  ) {
                                       //board[i][j] = LETTERS[j];
                                       board[i][j] = WHITE_PIECES[j];
 
@@ -80,8 +80,8 @@ public class Board {
 
         }
         public void printBoard() {
-                for (int i = 0; i < 8; i++) {
-                        for (int j = 0; j < 8; j++) {
+                for (int i = 0; i < 9; i++) {
+                        for (int j = 0; j < 9; j++) {
                             if ("⬛".equals(board[i][j]))
                                 System.out.print(board[i][j]);
                             else System.out.print(board[i][j]+" ");
