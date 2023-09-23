@@ -1,4 +1,9 @@
 package model;
 
-public class King {
+import model.utils.Color;
+
+public class King extends  Piece{
+    public King(Color color, Location loc, Board board,String symbol){
+        super(color,loc,board,symbol);
+    }
 }

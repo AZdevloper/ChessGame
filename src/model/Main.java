@@ -6,8 +6,10 @@ public class Main {
 
     public static void main(String[] args) {
         // initialize new board
-        Board game = new Board();
+        Board board = new Board();
+        board.init();
         //start playing
+        Game game = new Game(board);
         game.play();
     }
 }
