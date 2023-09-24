@@ -27,29 +27,29 @@ public class Board {
       }
     public void init() {
         // BLACK
-        new Rook(Color.BLACK, locations[0][0], this,"♖");
-        new Rook(Color.BLACK, locations[0][7], this,"♖");
-        new Knight(Color.BLACK, locations[0][1], this,"♘");
-        new Knight(Color.BLACK, locations[0][6], this,"♘");
-        new Bishop(Color.BLACK, locations[0][2], this,"♗");
-        new Bishop(Color.BLACK, locations[0][5], this,"♗");
-        new Queen(Color.BLACK, locations[0][3], this,"♕");
-        new King(Color.BLACK, locations[0][4], this,"♔");
+        new Rook(Color.BLACK, locations[0][0], this," ♖");
+        new Rook(Color.BLACK, locations[0][7], this," ♖");
+        new Knight(Color.BLACK, locations[0][1], this," ♘");
+        new Knight(Color.BLACK, locations[0][6], this," ♘");
+        new Bishop(Color.BLACK, locations[0][2], this," ♗");
+        new Bishop(Color.BLACK, locations[0][5], this," ♗");
+        new Queen(Color.BLACK, locations[0][3], this," ♕");
+        new King(Color.BLACK, locations[0][4], this," ♔");
         for (int i = 0; i < 8; i++) {
-            new Pawn(Color.BLACK, locations[1][i], this,"♙");
+            new Pawn(Color.BLACK, locations[1][i], this," ♙");
         }
 
         // WHITE
-        new Rook(Color.WHITE, locations[7][0], this, "♜");
-        new Rook(Color.WHITE, locations[7][7], this, "♜");
-        new Knight(Color.WHITE, locations[7][1], this, "♞");
-        new Knight(Color.WHITE, locations[7][6], this, "♞");
-        new Bishop(Color.WHITE, locations[7][2], this, "♝");
-        new Bishop(Color.WHITE, locations[7][5], this, "♝");
-        new Queen(Color.WHITE, locations[7][3], this, "♛");
-        new King(Color.WHITE, locations[7][4], this, "♚");
+        new Rook(Color.WHITE, locations[7][0], this, " ♜");
+        new Rook(Color.WHITE, locations[7][7], this, " ♜");
+        new Knight(Color.WHITE, locations[7][1], this, " ♞");
+        new Knight(Color.WHITE, locations[7][6], this, " ♞");
+        new Bishop(Color.WHITE, locations[7][2], this, " ♝");
+        new Bishop(Color.WHITE, locations[7][5], this, " ♝");
+        new Queen(Color.WHITE, locations[7][3], this, " ♛");
+        new King(Color.WHITE, locations[7][4], this, " ♚");
         for (int i = 0; i < 8; i++) {
-            new Pawn(Color.WHITE, locations[6][i], this, "♟");
+            new Pawn(Color.WHITE, locations[6][i], this, " ♟");
         }
     }
         @Override
@@ -57,46 +57,41 @@ public class Board {
             // Implement board display logic here.
             return "Chessboard"; // Replace with your logic.
         }
-
     public void move(String move) {
             // Implement the move logic here.
         }
-
-
-
-    public Location[][] getLocations(String move) {
+    public Location getLocations(String move) {
         Location location = new Location(move);
-
-        return locations;
+        System.out.println(" column : "+location.column + "row :" + location.row);
+        return locations[2][4];
     }
 
 
     public void printTheBoard() {
 
-        System.out.println("     " + " abcdefgh");
+        System.out.println("     " + "  a  b  c  d  e  f  g  h");
         for (int i = 0; i < 8; i++) {
             System.out.print("     " + (8 - i));
             for (int j = 0; j < 8; j++) {
 
                 if (locations[i][j].getPiece() != null) {
-                    System.out.print(locations[i][j].getPiece().toString());
+                    System.out.print(locations[i][j].getPiece().symbol);
                 } else {
-                    System.out.print(" ");
+                    System.out.print(Location.defaultSymbol);
                 }
             }
-            System.out.print(8 - i);
+           // System.out.print(8 - i);
             System.out.println();
         }
-        System.out.println("     " + " abcdefgh");
     }
 
-        public boolean isGameOver() {
-                // TODO: Implement this method.
-                return false;
-        }
+    public boolean isGameOver() {
+            // TODO: Implement this method.
+            return false;
+    }
 
-        public String getWinner() {
-                // TODO: Implement this method.
-                return null;
-        }
+    public String getWinner() {
+            // TODO: Implement this method.
+            return null;
+    }
 }

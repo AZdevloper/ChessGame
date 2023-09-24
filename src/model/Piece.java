@@ -12,6 +12,7 @@ public abstract class Piece {
         this.board = board;
         this.color = color;
         location = loc;
+        this.location.setPiece(this);
         this.symbol = symbol;
     }
 
