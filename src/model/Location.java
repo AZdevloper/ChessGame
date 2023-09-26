@@ -1,19 +1,19 @@
 package model;
 
 public class Location {
-    public int row;
-    public int column;
+    private int row;
+    private int column;
     public static String defaultSymbol = "⬛";
     public Piece piece;
 
     public Location(String loc){
-        System.out.println("loc : "+loc);
+        //System.out.println("loc : "+loc);
     char columnChar = loc.charAt(0);
     char rowChar = loc.charAt(1);
 
     //System.out.println(rowChar - '0');
 
-    row = rowChar - '0';
+    row = rowChar - '0'; // Integer.parseInt() rowChar - 48;
     row = 8-row;
     column = columnChar - 'a';
 
@@ -28,7 +28,16 @@ public class Location {
     public void setPiece(Piece piece){
         this.piece = piece;
     }
-    public  String toString(){
-        return "⬛";
+    public void setRow(int row){
+        this.row = row;
+    }
+    public int getRow(){
+        return this.row;
+    }
+    public void setColumn(int col){
+        this.column = col;
+    }
+    public int getColumn(){
+        return this.column;
     }
 }

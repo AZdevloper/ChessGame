@@ -1,19 +1,32 @@
 package model;
+import model.Exceptions.inValidMoveException;
 import model.utils.Color;
 import java.util.Scanner;
 
 public class Board {
 
-    public Location[][] locations;
+    public  Location[][] locations;
+
+    public  void movePiece(Location from, Location to){
+
+        locations[to.getRow()][to.getColumn()].setPiece(getPieceToMove(from));
+        locations[from.getRow()][from.getColumn()].setPiece(null);
 
 
-    private static final String[]  LETTERS = {"0","a", "b", " c", " d"," e", " f", "j", "h"};
-    private static final String[] NUMBERS = {"0","1", "2", "3", "4", "5", "6", "7", "8"};
-    private static final String[]  BLACK_PIECES = {"♙", "♖", "♘", "♗", "♕", "♔", "♗", "♘", "♖"};
-    private static final String[] WHITE_PIECES = {"♟", "♜", "♞", "♝", "♛", "♚", "♝", "♞", "♜"};
-    private static final String[] COLORS = {"White", "Black"};
-    private String[][] board;
-    private String currentPlayer;
+    }
+    public void movePieceToLocation(Location from, Location to) throws inValidMoveException {
+        if (isPawn(from.getPiece()) ){
+            Pawn  pawn = new Pawn();
+            pawn.move(from, to);
+        }
+    }
+    public Piece getPieceToMove(Location from){
+        return locations[from.getRow()][from.getColumn()].getPiece();
+    }
+
+    public boolean isPawn(Piece piece){
+       return piece.symbol.equals(" ♙") || piece.symbol.equals(" ♟");
+    }
     public Board(){
         locations = new Location[8][8];
         for (int i = 0; i < 8; i++) {
@@ -60,16 +73,14 @@ public class Board {
     public void move(String move) {
             // Implement the move logic here.
         }
-    public Location getLocations(String move) {
-        Location location = new Location(move);
-        System.out.println(" column : "+location.column + "row :" + location.row);
-        return locations[2][4];
+    public Location getCurrentLocations(String move) {
+        Location currentLocation = new Location(move);
+        //System.out.println(" column : "+location.column + "row :" + location.row);
+        return locations[currentLocation.getRow()][currentLocation.getColumn()];
     }
-
-
     public void printTheBoard() {
 
-        System.out.println("     " + "  a  b  c  d  e  f  g  h");
+        System.out.println("     " + "  a  b  c d  e f g  h");
         for (int i = 0; i < 8; i++) {
             System.out.print("     " + (8 - i));
             for (int j = 0; j < 8; j++) {
@@ -84,7 +95,6 @@ public class Board {
             System.out.println();
         }
     }
-
     public boolean isGameOver() {
             // TODO: Implement this method.
             return false;

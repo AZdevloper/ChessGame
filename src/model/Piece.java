@@ -1,4 +1,5 @@
 package model;
+import model.Exceptions.inValidMoveException;
 import model.utils.Color;
 
 public abstract class Piece {
@@ -15,5 +16,8 @@ public abstract class Piece {
         this.location.setPiece(this);
         this.symbol = symbol;
     }
+
+    public Piece(){};
+    public abstract void move(Location from,Location to) throws inValidMoveException;
 
 }
