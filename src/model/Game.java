@@ -1,6 +1,7 @@
 package model;
 
 import model.Exceptions.inValidMoveException;
+import model.utils.Move;
 
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ public class Game {
     public Scanner sc = new Scanner(System.in);
 
     public Game(Board board) {
-        //super();
+        super();
         this.board = board;
        // gameInAction = true;
         //turn = 0;
@@ -39,27 +40,30 @@ public class Game {
                 isBlackTurn = true;
             }
 
-            String move= sc.nextLine();
-            handelMove(move);
+            String order= sc.nextLine();
+            handelMove(order);
         }
 
     }
-    public void handelMove(String move) throws inValidMoveException {
+    public void handelMove(String order ) throws inValidMoveException {
         // export from and to
-        Location from = board.getCurrentLocations(move.substring(0,2));
+        Location from = board.getCurrentLocations(order.substring(0,2));
         //System.out.println(" row :"+from.getRow()+ "column : "+from.getColumn());
-        Location to = board.getCurrentLocations(move.substring(2,4));
+        Location to = board.getCurrentLocations(order.substring(2,4));
+
+        Piece piece =  from.getPiece();
+        Move move = new Move(piece, from, to);
 
         //Location test = new Location(8,4);
-        Piece pieceToMove = from.getPiece();
-        System.out.println("pieceToMove : " + pieceToMove.symbol);
-        System.out.println("pieceToMove location : " +"row : " +pieceToMove.location.getRow()+"col : " + pieceToMove.location.getColumn());
+//        Piece pieceToMove = from.getPiece();
+//        System.out.println("pieceToMove : " + pieceToMove.symbol);
+//        System.out.println("pieceToMove location : " +"row : " +pieceToMove.location.getRow()+"col : " + pieceToMove.location.getColumn());
 
-        board.movePieceToLocation(from,to);
+        board.movePieceToLocation(move);
 
-        System.out.println("pieceToMove location : " +"row : " +pieceToMove.location.getRow()+"col : " + pieceToMove.location.getColumn());
+        //System.out.println("pieceToMove location : " +"row : " +pieceToMove.location.getRow()+"col : " + pieceToMove.location.getColumn());
         Piece movedPiece = to.getPiece();
-        System.out.println("to piece symole " +movedPiece.symbol);
+//         System.out.println("to piece symole " +movedPiece.symbol);
         board.printTheBoard();
 
     }

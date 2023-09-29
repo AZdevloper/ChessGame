@@ -3,6 +3,8 @@ package model;
 import model.Board;
 import model.Exceptions.inValidMoveException;
 
+import javax.sound.midi.ShortMessage;
+
 public class Main {
 
     public static void main(String[] args) throws inValidMoveException {
@@ -10,7 +12,7 @@ public class Main {
         // initialize new board
         Board board = new Board();
         board.init();
-        //start playing
+
         Game game = new Game(board);
         game.play();
     }

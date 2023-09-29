@@ -1,31 +1,41 @@
 package model;
 import model.Exceptions.inValidMoveException;
 import model.utils.Color;
+import model.utils.Move;
+
 import java.util.Scanner;
 
 public class Board {
 
     public  Location[][] locations;
 
-    public  void movePiece(Location from, Location to){
-
-        locations[to.getRow()][to.getColumn()].setPiece(getPieceToMove(from));
-        locations[from.getRow()][from.getColumn()].setPiece(null);
-
-
+    public  void movePiece( Move move,Piece  piece){
+        locations[move.getTo().getRow()][move.getTo().getColumn()].setPiece(piece);
+        locations[move.getFrom().getRow()][move.getFrom().getColumn()].setPiece(null);
     }
-    public void movePieceToLocation(Location from, Location to) throws inValidMoveException {
-        if (isPawn(from.getPiece()) ){
-            Pawn  pawn = new Pawn();
-            pawn.move(from, to);
-        }
+    public void movePieceToLocation(Move move) throws inValidMoveException {
+        Piece piece = move.getFrom().getPiece();
+        piece.moveTo(move);
+
+        /*if (isPawn(piece) ){
+           // Pawn  pawn = new Pawn();
+
+        }else if (isRook(piece)){
+            piece.moveTo(move);
+
+        }*/
     }
+
+    private boolean isRook(Piece piece) {
+        return piece.symbol.equals(" ♙") || piece.symbol.equals(" ♟");
+    }
+
     public Piece getPieceToMove(Location from){
         return locations[from.getRow()][from.getColumn()].getPiece();
     }
 
     public boolean isPawn(Piece piece){
-       return piece.symbol.equals(" ♙") || piece.symbol.equals(" ♟");
+       return piece.symbol.equals(" ♖") || piece.symbol.equals(" ♜");
     }
     public Board(){
         locations = new Location[8][8];
@@ -65,13 +75,10 @@ public class Board {
             new Pawn(Color.WHITE, locations[6][i], this, " ♟");
         }
     }
-        @Override
+    @Override
     public String toString() {
             // Implement board display logic here.
             return "Chessboard"; // Replace with your logic.
-        }
-    public void move(String move) {
-            // Implement the move logic here.
         }
     public Location getCurrentLocations(String move) {
         Location currentLocation = new Location(move);
@@ -94,14 +101,5 @@ public class Board {
            // System.out.print(8 - i);
             System.out.println();
         }
-    }
-    public boolean isGameOver() {
-            // TODO: Implement this method.
-            return false;
-    }
-
-    public String getWinner() {
-            // TODO: Implement this method.
-            return null;
     }
 }
