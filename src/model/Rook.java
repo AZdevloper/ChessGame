@@ -11,6 +11,8 @@ public class Rook  extends Piece{
     public Rook(Color color, Location loc, Board board, String symbol){
         super(color,loc,board,symbol);
     }
+
+    public Rook(){};
     @Override
     public  void moveTo(Move move) {
         try {

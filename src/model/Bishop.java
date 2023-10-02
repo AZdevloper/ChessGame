@@ -10,6 +10,7 @@ public class Bishop extends Piece {
     public Bishop(Color color, Location loc, Board board,String symbol){
         super(color,loc,board,symbol);
     }
+    public Bishop(){};
     @Override
     public void moveTo(Move move) throws inValidMoveException {
         try {
@@ -34,7 +35,7 @@ public class Bishop extends Piece {
 
         boolean istoGoEmpty = move.getTo().getPiece() == null;
 
-        if ((colChang > 0 && rowChang > 0 ) &&   istoGoEmpty ){
+        if ((colChang == rowChang ) &&   istoGoEmpty ){
             return true;
         }else if (!istoGoEmpty){
 

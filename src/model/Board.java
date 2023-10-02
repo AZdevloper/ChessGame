@@ -16,14 +16,6 @@ public class Board {
     public void movePieceToLocation(Move move) throws inValidMoveException {
         Piece piece = move.getFrom().getPiece();
         piece.moveTo(move);
-
-        /*if (isPawn(piece) ){
-           // Pawn  pawn = new Pawn();
-
-        }else if (isRook(piece)){
-            piece.moveTo(move);
-
-        }*/
     }
 
     private boolean isRook(Piece piece) {

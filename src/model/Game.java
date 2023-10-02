@@ -62,7 +62,7 @@ public class Game {
         board.movePieceToLocation(move);
 
         //System.out.println("pieceToMove location : " +"row : " +pieceToMove.location.getRow()+"col : " + pieceToMove.location.getColumn());
-        Piece movedPiece = to.getPiece();
+        //Piece movedPiece = to.getPiece();
 //         System.out.println("to piece symole " +movedPiece.symbol);
         board.printTheBoard();
 
