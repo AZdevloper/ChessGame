@@ -2,13 +2,12 @@ package model;
 
 import model.Exceptions.inValidMoveException;
 import model.utils.Color;
-import model.utils.Move;
 
 import static model.utils.MessageUtils.showMessage;
 
 public class Pawn extends Piece {
 
-   public boolean isAlreadyMoved = false;
+
    public boolean willCapture = false;
 
     public Pawn(Color color, Location loc, Board board,String symbol){

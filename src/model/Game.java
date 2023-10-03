@@ -1,7 +1,6 @@
 package model;
 
 import model.Exceptions.inValidMoveException;
-import model.utils.Move;
 
 import java.util.Scanner;
 
@@ -14,10 +13,6 @@ public class Game {
     public Game(Board board) {
         super();
         this.board = board;
-       // gameInAction = true;
-        //turn = 0;
-        //validMoves = new ArrayList<>();
-
     }
     public void play() throws inValidMoveException {
 

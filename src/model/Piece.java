@@ -1,7 +1,6 @@
 package model;
 import model.Exceptions.inValidMoveException;
 import model.utils.Color;
-import model.utils.Move;
 
 public abstract class Piece {
 
@@ -9,6 +8,7 @@ public abstract class Piece {
     protected Location location;
     protected String symbol;
     protected Board board;
+    protected boolean isAlreadyMoved = false;
 
     public Piece(Color color,Location loc,Board board, String symbol){
         this.color = color;
@@ -20,5 +20,6 @@ public abstract class Piece {
 
     public Piece(){};
     public abstract void moveTo(Move move) throws inValidMoveException;
+    public abstract boolean isValidMove(Move move) throws inValidMoveException;
 
 }

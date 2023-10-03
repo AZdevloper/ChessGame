@@ -1,4 +1,4 @@
-package model.utils;
+package model;
 
 import model.Location;
 import model.Piece;

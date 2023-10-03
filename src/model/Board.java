@@ -1,9 +1,6 @@
 package model;
 import model.Exceptions.inValidMoveException;
 import model.utils.Color;
-import model.utils.Move;
-
-import java.util.Scanner;
 
 public class Board {
 
@@ -16,18 +13,6 @@ public class Board {
     public void movePieceToLocation(Move move) throws inValidMoveException {
         Piece piece = move.getFrom().getPiece();
         piece.moveTo(move);
-    }
-
-    private boolean isRook(Piece piece) {
-        return piece.symbol.equals(" ♙") || piece.symbol.equals(" ♟");
-    }
-
-    public Piece getPieceToMove(Location from){
-        return locations[from.getRow()][from.getColumn()].getPiece();
-    }
-
-    public boolean isPawn(Piece piece){
-       return piece.symbol.equals(" ♖") || piece.symbol.equals(" ♜");
     }
     public Board(){
         locations = new Location[8][8];
@@ -67,11 +52,6 @@ public class Board {
             new Pawn(Color.WHITE, locations[6][i], this, " ♟");
         }
     }
-    @Override
-    public String toString() {
-            // Implement board display logic here.
-            return "Chessboard"; // Replace with your logic.
-        }
     public Location getCurrentLocations(String move) {
         Location currentLocation = new Location(move);
         //System.out.println(" column : "+location.column + "row :" + location.row);

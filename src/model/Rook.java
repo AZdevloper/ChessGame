@@ -2,7 +2,6 @@ package model;
 
 import model.Exceptions.inValidMoveException;
 import model.utils.Color;
-import model.utils.Move;
 
 import static model.utils.MessageUtils.showMessage;
 
