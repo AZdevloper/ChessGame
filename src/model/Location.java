@@ -3,8 +3,8 @@ package model;
 public class Location {
     private int row;
     private int column;
-    public static String defaultSymbol = " ⬛";
-    public static String defaultSymbol1 = "\" ";
+    public static String defaultSymbol = " ❚ ";
+    public static String defaultSymbol1 = "⌧ , ❚ ,";
     private Piece piece;
 
     public Location(String loc){

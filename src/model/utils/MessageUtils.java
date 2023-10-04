@@ -7,9 +7,9 @@ public class MessageUtils {
         final String GREEN = "\u001B[32m";
 
         switch (variation) {
-            case "info" -> System.out.println(BLUE + message + RESET);
-            case "error" -> System.out.println(RED + message + RESET);
-            case "success" -> System.out.println(GREEN + message + RESET);
+            case "info" -> System.out.print(BLUE + message + RESET);
+            case "error" -> System.out.print(RED + message + RESET);
+            case "success" -> System.out.print(GREEN + message + RESET);
         }
     }
 }

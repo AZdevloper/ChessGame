@@ -1,6 +1,7 @@
 package model;
 import model.Exceptions.inValidMoveException;
 import model.utils.Color;
+import static  model.utils.MessageUtils.showMessage;
 
 public class Board {
 
@@ -36,7 +37,7 @@ public class Board {
         new Queen(Color.BLACK, locations[0][3], this," ♕");
         new King(Color.BLACK, locations[0][4], this," ♔");
         for (int i = 0; i < 8; i++) {
-            new Pawn(Color.BLACK, locations[1][i], this," ♙");
+            new Pawn(Color.BLACK, locations[3][i], this," ♙");
         }
 
         // WHITE
@@ -59,7 +60,7 @@ public class Board {
     }
     public void printTheBoard() {
 
-        System.out.println("     " + "  a  b  c d  e f g  h");
+        System.out.println("\n     " + "  a  b  c d  e f g  h");
         for (int i = 0; i < 8; i++) {
             System.out.print("     " + (8 - i));
             for (int j = 0; j < 8; j++) {
@@ -67,7 +68,7 @@ public class Board {
                 if (locations[i][j].getPiece() != null) {
                     System.out.print(locations[i][j].getPiece().symbol);
                 } else {
-                    System.out.print(Location.defaultSymbol);
+                    showMessage(Location.defaultSymbol,"success");
                 }
             }
            // System.out.print(8 - i);

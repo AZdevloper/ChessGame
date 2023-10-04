@@ -20,7 +20,6 @@ public class Knight  extends Piece{
             showMessage("Invalid move: " + e.getMessage(),"error");
         }
     }
-
     public boolean isValidMove(Move move) throws inValidMoveException{
 
         int colFrom = move.getFrom().getColumn();

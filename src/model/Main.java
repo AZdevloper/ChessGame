@@ -9,6 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws inValidMoveException {
 
+
         // initialize new board
         Board board = new Board();
         board.init();

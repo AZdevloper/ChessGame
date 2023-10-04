@@ -33,11 +33,11 @@ public class Rook  extends Piece{
         int colChang = Math.abs(colTo -colFrom);
         int rowChang = Math.abs(rowTo -rowFrom);
 
-        boolean istoGoEmpty = move.getTo().getPiece() == null;
+        //boolean istoGoEmpty = move.getTo().getPiece() == null;
+        boolean isEmptyWay = isEmptyWay(move);
 
-        if ((colChang > 0 && rowChang == 0 ) || ( rowChang > 0 && colChang == 0) &&   istoGoEmpty ){
-
-            if (colChang > rowChang) {
+        if ( ((colChang > 0 && rowChang == 0 ) || ( rowChang > 0 && colChang == 0) ) &&   isEmptyWay ){
+            /*if (colChang > rowChang) {
                 if( colTo > checkPieceWay(move) ){
                     throw new inValidMoveException(inValidMoveException.ROOK);
                 }
@@ -45,11 +45,13 @@ public class Rook  extends Piece{
                 if( rowTo > checkPieceWay(move) ){
                     throw new inValidMoveException(inValidMoveException.ROOK);
                 }
-            }
+            }*/
+            if(move.getTo().getPiece() == null || !move.getFrom().getPiece().color.equals(move.getTo().getPiece().color))
+                return true;
+            else
+                throw new inValidMoveException(inValidMoveException.ROOK);
 
-            return true;
-
-        }else if (!istoGoEmpty){
+        }else /*if (!istoGoEmpty){
 
             boolean toGoContainsEnemyPiece = !move.getFrom().getPiece().color.equals(move.getTo().getPiece().color);
             boolean isMyPiece = !toGoContainsEnemyPiece;
@@ -60,13 +62,10 @@ public class Rook  extends Piece{
             }else if(isMyPiece) {
                 throw new inValidMoveException(inValidMoveException.ROOK);
             }
-        }
-        throw new inValidMoveException(inValidMoveException.ROOK);
-
-
-
+        }*/
+            throw new inValidMoveException(inValidMoveException.ROOK);
     }
-    public int checkPieceWay(Move move) {
+    public boolean isEmptyWay(Move move) {
         int colFrom = move.getFrom().getColumn();
         int colTo = move.getTo().getColumn();
 
@@ -76,23 +75,26 @@ public class Rook  extends Piece{
         int colChang = Math.abs(colTo - colFrom);
         int rowChang = Math.abs(rowTo - rowFrom);
 
-        if (colChang > rowChang) {
-
-            // rowFrom+1 to eliminate him self
-            for (int i=colChang+1 ; i < rowTo ; i++){
-                if( board.locations[rowFrom][i] == null ){
-                    continue;
-                }else return i;
+        if (colChang > 0) {
+            // Rook is moving horizontally
+            int step = colTo > colFrom ? 1 : -1; // Determine the direction of movement
+            for (int i = colFrom + step; i != colTo; i += step) {
+                if (board.locations[rowFrom][i].getPiece() != null) {
+                    return false; // There is an obstacle in the way
+                }
             }
-        } else {
-            // rowFrom+1 to eliminate him self
-            for (int i=rowFrom+1 ; i < rowTo ; i++){
-                if( board.locations[i][colChang] == null ){
-                    continue;
-                }else return i;
+        } else if (rowChang > 0) {
+            // Rook is moving vertically
+            int step = rowTo > rowFrom ? 1 : -1; // Determine the direction of movement
+            for (int i = rowFrom + step; i != rowTo; i += step) {
+                if (board.locations[i][colFrom].getPiece() != null) {
+                    return false; // There is an obstacle in the way
+                }
             }
         }
-        return  0;
 
+        // If no obstacles are encountered, the path is empty
+        return true;
     }
+
 }
