@@ -7,6 +7,7 @@ public class inValidMoveException extends Exception{
     public static final  String ROOK = "\n invalid move for the Rook piece ?";
     public static final  String BISHOP = "\n invalid move for the Bishop piece ?";
     public static final  String KING = "\n invalid move for the King piece ?";
+    public static final  String QUEEN = "\n invalid move for the Queen piece ?";
 
     public inValidMoveException(String message){super(message);}
 }

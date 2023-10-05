@@ -9,7 +9,6 @@ public abstract class Piece {
     protected String symbol;
     protected Board board;
     protected boolean isAlreadyMoved = false;
-
     public Piece(Color color,Location loc,Board board, String symbol){
         this.color = color;
         location = loc;
@@ -21,5 +20,6 @@ public abstract class Piece {
     public Piece(){};
     public abstract void moveTo(Move move) throws inValidMoveException;
     public abstract boolean isValidMove(Move move) throws inValidMoveException;
+
 
 }

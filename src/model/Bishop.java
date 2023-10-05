@@ -45,6 +45,7 @@ public class Bishop extends Piece {
     }
 
     public boolean isEmptyWay(Move move) {
+
         int colFrom = move.getFrom().getColumn();
         int colTo = move.getTo().getColumn();
         int rowFrom = move.getFrom().getRow();

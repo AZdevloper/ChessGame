@@ -72,7 +72,14 @@ public class Board {
                 }
             }
            // System.out.print(8 - i);
-            System.out.println();
+            if (i == 7) {
+                System.out.print("");
+            } else {
+                System.out.println();
+
+
+            }
         }
+        System.out.println("\n     " + "  a  b  c d  e f g  h");
     }
 }
