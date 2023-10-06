@@ -9,10 +9,12 @@ public class Board {
 
     public  void movePiece( Move move,Piece  piece){
         locations[move.getTo().getRow()][move.getTo().getColumn()].setPiece(piece);
+        piece.location = locations[move.getTo().getRow()][move.getTo().getColumn()];
+
         locations[move.getFrom().getRow()][move.getFrom().getColumn()].setPiece(null);
     }
     public void movePieceToLocation(Move move) throws inValidMoveException {
-        Piece piece = move.getFrom().getPiece();
+        Piece piece = move.getPiece();
         piece.moveTo(move);
     }
     public Board(){
@@ -81,5 +83,21 @@ public class Board {
             }
         }
         System.out.println("\n     " + "  a  b  c d  e f g  h");
+    }
+
+    public void transformPawnToQueen(Pawn pawn) {
+
+        Location pawnLocation = pawn.location ;
+
+        String QueenSymbol = null;
+        if (pawn.color == Color.BLACK)
+            QueenSymbol = "♕" ;
+        else if (pawn.color == Color.WHITE) {
+            QueenSymbol= "♛";
+        }
+
+        Queen queen = new Queen(pawn.color, pawnLocation, this, QueenSymbol);
+
+        locations[pawnLocation.getRow()][pawnLocation.getColumn()].setPiece(queen);
     }
 }

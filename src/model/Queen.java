@@ -3,8 +3,6 @@ package model;
 import model.Exceptions.inValidMoveException;
 import model.utils.Color;
 
-import java.io.FileReader;
-
 import static model.utils.MessageUtils.showMessage;
 
 public class Queen  extends Piece{
@@ -25,21 +23,7 @@ public class Queen  extends Piece{
 
     public boolean isValidMove(Move move) throws inValidMoveException{
 
-//        int colFrom = move.getFrom().getColumn();
-//        int colTo = move.getTo().getColumn();
-//
-//        int rowFrom = move.getFrom().getRow();
-//        int rowTo = move.getTo().getRow();
-
-//        int colChang = Math.abs(colTo -colFrom);
-//        int rowChang = Math.abs(rowTo -rowFrom);
-
-//        boolean istoGoEmpty = move.getTo().getPiece() == null;
         boolean isEmptyWay = isEmptyWay(move);
-
-//        boolean isValidMoveForRook = (colChang > 0 && rowChang == 0 ) || ( rowChang > 0 && colChang == 0);
-//        boolean isValidMoveForBishop = (colChang == rowChang );
-//        boolean isValidMoveForKing  =  ((colChang == 1 || rowChang == 1) && (colChang == 0 || rowChang == 0) );
 
         if (  isEmptyWay ){
             if(move.getTo().getPiece() == null || !move.getFrom().getPiece().color.equals(move.getTo().getPiece().color))

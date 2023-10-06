@@ -21,8 +21,13 @@ public class Pawn extends Piece {
         }
         try {
             if (isValidMove(move)) {
+
                 board.movePiece(move,this);
                 isAlreadyMoved = true;
+                if (move.getTo().getRow() == 7 && move.getPiece().color == Color.BLACK ) {
+
+                    board.transformPawnToQueen(this);
+                }
             }
         } catch (inValidMoveException e) {
             showMessage("Invalid move: " + e.getMessage(),"error");
