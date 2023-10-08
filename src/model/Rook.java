@@ -12,7 +12,7 @@ public class Rook  extends Piece{
     }
     public Rook(){};
     @Override
-    public  void moveTo(Move move) {
+ /*   public  void moveTo(Move move) {
         try {
             if (isValidMove(move)) {
                 board.movePiece(move,this);
@@ -21,7 +21,7 @@ public class Rook  extends Piece{
         } catch (inValidMoveException e) {
             showMessage("Invalid move: " + e.getMessage(),"error");
         }
-    }
+    }*/
     public boolean isValidMove(Move move) throws inValidMoveException{
 
         int colFrom = move.getFrom().getColumn();
@@ -37,32 +37,13 @@ public class Rook  extends Piece{
         boolean isEmptyWay = isEmptyWay(move);
 
         if ( ((colChang > 0 && rowChang == 0 ) || ( rowChang > 0 && colChang == 0) ) &&   isEmptyWay ){
-            /*if (colChang > rowChang) {
-                if( colTo > checkPieceWay(move) ){
-                    throw new inValidMoveException(inValidMoveException.ROOK);
-                }
-            }else{
-                if( rowTo > checkPieceWay(move) ){
-                    throw new inValidMoveException(inValidMoveException.ROOK);
-                }
-            }*/
-            if(move.getTo().getPiece() == null || !move.getFrom().getPiece().color.equals(move.getTo().getPiece().color))
+
+            if(canTakeNewLocation(move.getTo(),this))
                 return true;
             else
                 throw new inValidMoveException(inValidMoveException.ROOK);
 
-        }else /*if (!istoGoEmpty){
-
-            boolean toGoContainsEnemyPiece = !move.getFrom().getPiece().color.equals(move.getTo().getPiece().color);
-            boolean isMyPiece = !toGoContainsEnemyPiece;
-
-            if (toGoContainsEnemyPiece){
-                return true;
-
-            }else if(isMyPiece) {
-                throw new inValidMoveException(inValidMoveException.ROOK);
-            }
-        }*/
+        }else
             throw new inValidMoveException(inValidMoveException.ROOK);
     }
     public boolean isEmptyWay(Move move) {

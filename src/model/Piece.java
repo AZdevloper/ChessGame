@@ -17,9 +17,19 @@ public abstract class Piece {
         this.board = board;
     }
 
-    public Piece(){};
-    public abstract void moveTo(Move move) throws inValidMoveException;
+    public Piece(){}
+    public  void moveTo(Move move) throws inValidMoveException{
+        if (isValidMove(move)) {
+
+        board.movePiece(move,this);
+        isAlreadyMoved = true;
+
+    }
+    }
     public abstract boolean isValidMove(Move move) throws inValidMoveException;
 
+    public  boolean canTakeNewLocation(Location newLocation,Piece piece){
+        return newLocation.getPiece() == null || !newLocation.getPiece().color.equals(piece.color);
+    }
 
 }

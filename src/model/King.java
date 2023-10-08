@@ -11,6 +11,7 @@ public class King extends  Piece{
     }
 
     public King(){};
+/*
     @Override
     public void moveTo(Move move) throws inValidMoveException {
         try {
@@ -22,6 +23,7 @@ public class King extends  Piece{
             showMessage("Invalid move: " + e.getMessage(),"error");
         }
     }
+*/
 
     public boolean isValidMove(Move move) throws inValidMoveException{
 
@@ -36,23 +38,14 @@ public class King extends  Piece{
 
         boolean istoGoEmpty = move.getTo().getPiece() == null;
 
-        if (   ( (colChang == 1 || rowChang == 1) && (colChang == 0 || rowChang == 0) ) &&   istoGoEmpty  ){
-            return true;
-        }else if (!istoGoEmpty){
-
-            boolean toGoContainsEnemyPiece = !move.getFrom().getPiece().color.equals(move.getTo().getPiece().color);
-            boolean isMyPiece = !toGoContainsEnemyPiece;
-
-            if (toGoContainsEnemyPiece){
+        if (    (colChang == 1 || rowChang == 1)    ){
+            if(canTakeNewLocation(move.getTo(),this))
                 return true;
-
-            }else if(isMyPiece) {
+            else
                 throw new inValidMoveException(inValidMoveException.KING);
-            }
-        }
-        throw new inValidMoveException(inValidMoveException.KING);
 
-
+        }else
+            throw new inValidMoveException(inValidMoveException.KING);
 
     }
 

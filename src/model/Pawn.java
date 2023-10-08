@@ -8,18 +8,16 @@ import static model.utils.MessageUtils.showMessage;
 public class Pawn extends Piece {
 
 
-   public boolean willCapture = false;
+  // public boolean willCapture = false;
 
     public Pawn(Color color, Location loc, Board board,String symbol){
         super(color,loc,board,symbol);
     }
 
-    public Pawn(){};
+    public Pawn(){}
+    @Override
     public void moveTo(Move move) throws  inValidMoveException{
-       if( isCaptureMove(move) ){
-            willCapture = true;
-        }
-        try {
+
             if (isValidMove(move)) {
 
                 board.movePiece(move,this);
@@ -29,48 +27,48 @@ public class Pawn extends Piece {
                     board.transformPawnToQueen(this);
                 }
             }
-        } catch (inValidMoveException e) {
-            showMessage("Invalid move: " + e.getMessage(),"error");
-        }
+
     }
 
     private boolean isCaptureMove(Move move) {
-        int fromRow = move.getFrom().getRow();
-        int fromCol = move.getFrom().getColumn();
-
-        int toRow = move.getTo().getRow();
-        int toCol =  move.getTo().getColumn();
-
-        int rowChang = toRow - fromRow;
-        int colChang = toCol - fromCol;
-
-
-        if(move.getTo().getPiece() == null){
-            return false;
-        }else {
-            boolean toGoContainsEnemyPiece = !move.getFrom().getPiece().color.equals(move.getTo().getPiece().color);
-            return rowChang == 1 && (colChang == 1 || colChang == -1) && toGoContainsEnemyPiece;
-        }
+        return move.getTo().getPiece() != null && !move.getPiece().color.equals(move.getTo().getPiece().color);
     }
+    @Override
     public boolean isValidMove(Move move) throws inValidMoveException{
+
+      boolean  isCaptureMove = isCaptureMove(move);
+
       int fromRow = move.getFrom().getRow();
       int fromCol = move.getFrom().getColumn();
       int toRow = move.getTo().getRow();
       int toCol =  move.getTo().getColumn();
 
-      int rowChang =Math.abs(toRow - fromRow);
-      int colChang = Math.abs(toCol - fromCol);
+      int rowChang =toRow - fromRow;
+      int colChang = toCol - fromCol;
 
-      if (rowChang == 1 && colChang == 0){
-        return true;
+      boolean isBlack = isBlack(move.getPiece());
+      boolean isWith = isWith(move.getPiece());
+
+      if ( ( rowChang == 1 || (rowChang == 2 && !isAlreadyMoved ) ) && colChang == 0 && isBlack ){
+        return move.getTo().getPiece() == null;
 
       }
-      if(colChang == 1 && willCapture){
+      else if((colChang == 1 || colChang == -1 )&& isCaptureMove){
           return true;
       }
-      if (rowChang == 2 && !isAlreadyMoved && colChang ==0  ){
-          return true;
+     else if ( ( rowChang == -1 || (rowChang == -2 && !isAlreadyMoved ) ) && colChang ==0 && isWith ){
+          return move.getTo().getPiece() == null;
       }
         throw new inValidMoveException(inValidMoveException.PAWN);
+
+
+    }
+
+    public boolean isBlack(Piece piece){
+        return piece.color == Color.BLACK;
+    }
+
+    public boolean isWith(Piece piece){
+        return piece.color == Color.WHITE;
     }
 }

@@ -10,7 +10,7 @@ public class Knight  extends Piece{
         super(color,loc,board,symbol);
     }
     @Override
-    public void moveTo(Move move) throws inValidMoveException {
+   /* public void moveTo(Move move) throws inValidMoveException {
         try {
             if (isValidMove(move)) {
                 board.movePiece(move,this);
@@ -19,7 +19,7 @@ public class Knight  extends Piece{
         } catch (inValidMoveException e) {
             showMessage("Invalid move: " + e.getMessage(),"error");
         }
-    }
+    }*/
     public boolean isValidMove(Move move) throws inValidMoveException{
 
         int colFrom = move.getFrom().getColumn();
@@ -36,7 +36,7 @@ public class Knight  extends Piece{
         if ((colChang == 2 && rowChang == 1 ) || ( rowChang == 2 && colChang == 1) &&   istoGoEmpty ){
             return true;
         }else if (!istoGoEmpty){
-            boolean toGoContainsEnemyPiece = !move.getFrom().getPiece().color.equals(move.getTo().getPiece().color);
+            boolean toGoContainsEnemyPiece = !move.getPiece().color.equals(move.getTo().getPiece().color);
             boolean isMyPiece = !toGoContainsEnemyPiece;
 
             if (toGoContainsEnemyPiece){

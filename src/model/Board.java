@@ -1,5 +1,6 @@
 package model;
 import model.Exceptions.inValidMoveException;
+import model.Exceptions.invalidStringOrderException;
 import model.utils.Color;
 import static  model.utils.MessageUtils.showMessage;
 
@@ -39,7 +40,7 @@ public class Board {
         new Queen(Color.BLACK, locations[0][3], this," ♕");
         new King(Color.BLACK, locations[0][4], this," ♔");
         for (int i = 0; i < 8; i++) {
-            new Pawn(Color.BLACK, locations[3][i], this," ♙");
+            new Pawn(Color.BLACK, locations[2][i], this," ♙");
         }
 
         // WHITE
@@ -52,10 +53,10 @@ public class Board {
         new Queen(Color.WHITE, locations[7][3], this, " ♛");
         new King(Color.WHITE, locations[7][4], this, " ♚");
         for (int i = 0; i < 8; i++) {
-            new Pawn(Color.WHITE, locations[6][i], this, " ♟");
+            new Pawn(Color.WHITE, locations[4][i], this, " ♟");
         }
     }
-    public Location getCurrentLocations(String move) {
+    public Location getCurrentLocations(String move) throws  invalidStringOrderException {
         Location currentLocation = new Location(move);
         //System.out.println(" column : "+location.column + "row :" + location.row);
         return locations[currentLocation.getRow()][currentLocation.getColumn()];

@@ -10,17 +10,7 @@ public class Bishop extends Piece {
         super(color,loc,board,symbol);
     }
     public Bishop(){};
-    @Override
-    public void moveTo(Move move) throws inValidMoveException {
-        try {
-            if (isValidMove(move)) {
-                board.movePiece(move,this);
 
-            }
-        } catch (inValidMoveException e) {
-            showMessage("Invalid move: " + e.getMessage(),"error");
-        }
-    }
     public boolean isValidMove(Move move) throws inValidMoveException{
 
         int colFrom = move.getFrom().getColumn();
@@ -36,7 +26,7 @@ public class Bishop extends Piece {
         boolean isEmptyWay = isEmptyWay(move);
 
         if ((colChang == rowChang )  && isEmptyWay){
-            if(move.getTo().getPiece() == null || !move.getFrom().getPiece().color.equals(move.getTo().getPiece().color))
+            if(canTakeNewLocation(move.getTo(),this))
                 return true;
             else
                 throw new inValidMoveException(inValidMoveException.ROOK);
